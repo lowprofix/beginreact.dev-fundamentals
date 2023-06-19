@@ -5,41 +5,68 @@
   </head>
   <body>
     <div id="root"></div>
-    <!-- 🦁 crée une div avec l'id "root" -->
-    <!-- ℹ️ presque toutes les app React ont une "root".
-         C'est le premier nœud de notre arbre. -->
   </body>
 
   <script>
+    //HelloDiv
     const helloDiv = document.createElement('div');
 
     helloDiv.innerText = 'Hello 👋';
-
-    helloDiv.addEventListener('click', () => {
+    const onHelloDivClick = () => {
       alert('Tu as cliqué sur Hello !');
-    });
+    };
+    helloDiv.addEventListener('click', onHelloDivClick);
+    //----------------
+    // helloDiv.addEventListener('click', () => {
+    //   alert('Tu as cliqué sur Hello !');
+    // });
 
-    const counter = (initialValue) => {
+    // Counter
+    const Counter = (initialValue) => {
       const button = document.createElement('button');
-      button.innerText = Number(initialValue) || 0;
+      button.innerText = typeof initialValue === 'number' ? initialValue : 0;
 
-      button.addEventListener('click', () => {
-        button.textContent = parseInt(button.textContent) + 1;
-      });
+      const onClick = () => {
+        const previousValue = Number(button.innerText);
+        button.innerText = Number(previousValue) + 1;
+      };
+      button.addEventListener('click', onClick);
       return button;
     };
-    const list = document.createElement('ul');
+    //----------------
+    // const counter = (initialValue) => {
+    //   const button = document.createElement('button');
+    //   button.innerText = Number(initialValue) || 0;
+
+    //   button.addEventListener('click', () => {
+    //     button.textContent = parseInt(button.textContent) + 1;
+    //   });
+    //   return button;
+    // };
+
+    // List of fruits
     const fruits = ['banana', 'apple', 'strawberry'];
-    fruits.forEach((fruit) => {
-      const li = document.createElement('li');
-      li.innerText = fruit;
-      list.appendChild(li);
+
+    const fruitsListUl = document.createElement('ul');
+    const fruitsLi = fruits.map((fruit) => {
+      const fruitLi = document.createElement('li');
+      fruitLi.innerText = fruit;
+      return fruitLi;
     });
+    fruitsListUl.append(...fruitsLi);
+    //----------------
+    // const list = document.createElement('ul');
+    // fruits.forEach((fruit) => {
+    //   const li = document.createElement('li');
+    //   li.innerText = fruit;
+    //   list.appendChild(li);
+    // });
+
     const root = document.querySelector('#root');
     root.appendChild(helloDiv);
-    root.appendChild(counter());
-    root.appendChild(counter('some string'));
-    root.appendChild(counter(10));
-    root.appendChild(list);
+    root.appendChild(Counter());
+    root.appendChild(Counter('some string'));
+    root.appendChild(Counter(10));
+    root.appendChild(fruitsListUl);
   </script>
 </html>
