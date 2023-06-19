@@ -19,12 +19,19 @@
 
   <script>
     // 🦁 Crée un button avec comme id "start" et comme text à l'intérieur "Start !"
+    const button = document.createElement('button');
+    button.id = 'start';
+    button.innerText = 'Start !';
     // 🦁 Ajoute une événement "onClick" à notre button qui affiche une alert.
-
+    button.addEventListener('click', () => {
+      alert('Tu as cliqué sur Start !');
+    });
     // 🦁 Crée une div : "elements" avec à l'intérieur le bouton.
-
+    const elements = document.createElement('div');
+    elements.appendChild(button);
     const container = document.querySelector('#root');
-    const root = undefined; // 🦁 Remplace `undefined` by `ReactDOM.createRoot(container);`
+    const root = ReactDOM.createRoot(container); // 🦁 Remplace `undefined` by `ReactDOM.createRoot(container);`
     // 🦁 Utilise `root.render` pour afficher la div "elements"
+    root.render(elements);
   </script>
 </html>
