@@ -19,23 +19,41 @@
   </body>
 
   <!-- 💡 permet de faire comprendre a Babel qu'il doit compiler ce fichier -->
+
   <script type="text/babel">
     // 🦁 Remplace tout ceci par du JSX !
     // 💡 <button id=...
-    const startButton = React.createElement(
-      'button',
-      {
-        id: 'start',
-        onClick: () => {
+    const startButton = (
+      <button
+        id="start"
+        onClick={() => {
           alert('Le bouton start à été cliqué !');
-        },
-      },
-      'Start'
+        }}
+      >
+        {' '}
+        Start{' '}
+      </button>
     );
 
-    // 🦁 Remplace tout ceci par du JSX !
-    // 💡 <div>...
-    const elements = React.createElement('div', null, startButton);
+    const Message = (props) => {
+      return <p>{props.children + ' ' + props.author}</p>;
+    };
+    const elements = /*#__PURE__*/ React.createElement(
+      'div',
+      null,
+      startButton,
+      /*#__PURE__*/ React.createElement(Message, null, 'Mon message ici'),
+      /*#__PURE__*/ React.createElement(
+        Message,
+        {
+          author: 'Nicolas',
+        },
+        'Hello'
+      ),
+      /*#__PURE__*/ React.createElement('h2', null, Math.random()),
+      /*#__PURE__*/ React.createElement('p', null, 112 + 4),
+      /*#__PURE__*/ React.createElement('span', null, new Date().toDateString())
+    );
 
     const root = ReactDOM.createRoot(document.querySelector('#root'));
     root.render(elements);
