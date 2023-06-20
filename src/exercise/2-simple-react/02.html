@@ -18,12 +18,14 @@
   </body>
 
   <script>
+    //Liste de fruits
     const fruits = ['pomme', 'poire', 'fraise', 'cerise'];
 
     const fruitsItems = fruits.map((fruit) => {
       return React.createElement('li', null, fruit);
     });
     const list = React.createElement('ul', null, fruitsItems);
+    //Button start
     const buttonStart = React.createElement(
       'button',
       {
@@ -32,14 +34,22 @@
           alert('Tu as cliqué sur Start !');
         },
       },
-      'Start'
+      'Start !'
     );
-    const buttonStop = React.createElement('button', null, 'Stop');
+    //Button stop
+    const buttonContainer = React.createElement(
+      'div',
+      null,
+      buttonStart,
+      React.createElement('button', null, 'Stop')
+    );
+    //const buttonStop = React.createElement('button', null, 'Stop');
+
     const element = React.createElement(
       'div',
       null,
       React.createElement('h1', null, 'Lance la partie !'),
-      buttonStop,
+      buttonContainer,
       list
     );
     const container = document.querySelector('#root');
